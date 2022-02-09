@@ -28,8 +28,8 @@ class CreateUserSerializer(Serializer):
             first_name=validated_data['first_name'],
             last_name=validated_data['last_name'],
             email=validated_data['email'],
-            phone=validated_data.get('phone'),
-            password=validated_data['password_1']
+            phone=validated_data.get('phone')
         )
+        user.set_password(password=validated_data['password_1'])
         Bucket.objects.create(owner=user)
         return user
